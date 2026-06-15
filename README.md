@@ -111,3 +111,16 @@ El workflow definido en [ci.yml](.github/workflows/ci.yml) realiza las siguiente
 2. **Ciclo de vida limpio**: Los hooks garantizan el cierre absoluto de las instancias del navegador y la liberación de memoria en el bloque `After`, previniendo fugas de recursos y procesos zombie.
 3. **Parámetros Tipados en Step Definitions**: Validación estricta de variables que ingresan desde los archivos `.feature` de Gherkin a los métodos de prueba.
 4. **Git Higiénico**: Configuración robusta en el `.gitignore` para asegurar que credenciales locales, reportes pesados de ejecuciones locales y directorios temporales de construcción no contaminen el control de versiones.
+
+
+## Cursos recomendados Playwright
+
+1. https://testautomationu.applitools.com/playwright-intro/chapter1.html
+2. https://testautomationu.applitools.com/playwright-advanced/
+3. https://testautomationu.applitools.com/web-element-locator-strategies/
+
+
+## Curso recomendados Devops 
+
+1. https://testautomationu.applitools.com/azure-devops-tutorial/chapter1.html
+2. https://testautomationu.applitools.com/github-actions-for-testing/
