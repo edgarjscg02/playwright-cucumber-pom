@@ -27,6 +27,8 @@ test('Registro Híbrido de Equipo B', async ({ page, request }) => {
     accountInfoSection: 'Enter Account Information',
     accountCreatedBanner: 'Account Created!',
     accountCreatedParagraph: '- paragraph: Congratulations! Your new account has been successfully created!',
+    accountDeletedBanner: 'Account Deleted!',
+    accountDeletedText: 'Your account has been permanently deleted!',
   };
 
   await page.route('**/*', (route) => {
@@ -83,6 +85,7 @@ test('Registro Híbrido de Equipo B', async ({ page, request }) => {
     await expect(page.getByText(expectedMessages.accountCreatedBanner)).toBeVisible();
     await expect(page.locator('#form')).toMatchAriaSnapshot(expectedMessages.accountCreatedParagraph);
     await expect(page.getByRole('link', { name: 'Continue' })).toBeVisible();
+    await page.getByRole('link', { name: 'Continue' }).click();
   });
 // Paso 4: Y luego (And Then)
   await test.step('Entonces valido vía API que el usuario fue creado y los datos coinciden', async () => {
@@ -115,9 +118,8 @@ test('Registro Híbrido de Equipo B', async ({ page, request }) => {
 
   // Paso 5: Y luego (And Then)
   await test.step('Y luego limpio los datos eliminando la cuenta creada', async () => {
-    await page.getByRole('link', { name: 'Continue' }).click();
     await page.getByRole('link', { name: 'Delete Account' }).click();
-    await expect(page.getByText('Account Deleted!')).toBeVisible();
-    await expect(page.locator('#form')).toContainText('Your account has been permanently deleted!');
+    await expect(page.getByText(expectedMessages.accountDeletedBanner)).toBeVisible();
+    await expect(page.locator('#form')).toContainText(expectedMessages.accountDeletedText);
   });
 });
